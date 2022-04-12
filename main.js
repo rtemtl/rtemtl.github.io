@@ -101,7 +101,7 @@ L.geoJSON(streetlights, {
             '<div class="container"><table class="table table-striped">' +
             // '<thead><tr><th>Properties</th><th>Light Information</th></tr></thead>' +
             '</td></tr>' + '<tr><td> RTE ID </td><td>' + feature.properties.RTEID +
-            '</td></tr>' + '<tr><td> Pole ID </td><td>' + feature.properties.UtlPoleID +
+            '</td></tr>' + '<tr><td> Smart Node ID </td><td>' + feature.properties.UtlPoleID +
             '</td></tr>' + '<tr><td> Light Type </td><td>' + feature.properties.LumType +
             '</td></tr>' + '<tr><td> Street Name </td><td>' + feature.properties.StreetName +
             '</td></tr>' + '<tr><td> Installation Date </td><td>' + feature.properties.SurvDate + '</td></tr>';
