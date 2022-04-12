@@ -88,11 +88,11 @@ var streetlights = {
 
 var s_light_style = {
     radius: 7,
-    fillColor: "#008cff",
-    color: "#000",
-    weight: 1,
+    fillColor: "#00C5FF",
+    color: "#175DDC",
+    weight: 2,
     opacity: 1,
-    fillOpacity: 1
+    fillOpacity: 0.7
 };
 
 L.geoJSON(streetlights, {
