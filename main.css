@@ -21,14 +21,14 @@ body {
 .left {
     left: 0;
     /* background-color: red; */
-    width: 70%;
+    width: 65%;
     /* zoom: 0.5; */
 }
 
 .right {
     right: 0;
     /* background-color: blue; */
-    width: 30%;
+    width: 35%;
 }
 
 .centered {
