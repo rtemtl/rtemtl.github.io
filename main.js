@@ -6,9 +6,9 @@ var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// to get the height of the window
-var height = $(window).height();
-console.log(`the height of the pc is: ` + height);
+// // to get the height of the window
+// var height = $(window).height();
+// console.log(`the height of the pc is: ` + height);
 
 var streetlights = {
     "type": "FeatureCollection",
