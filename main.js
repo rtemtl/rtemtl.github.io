@@ -98,28 +98,28 @@ var s_light_style = {
 };
 
 L.geoJSON(streetlights, {
-onEachFeature: function(feature, layer) {
-    var popupContent = '<h5 class = "text-primary">Streetlight Information</h5>' +
-        '<div class="container"><table class="table table-striped">' +
-        '</td></tr>' + '<tr><td> RTE ID </td><td>' + feature.properties.RTEID +
-        '</td></tr>' + '<tr><td> Fixture Type </td><td>' + feature.properties.LumType +
-        '</td></tr>' + '<tr><td> Smart Node ID </td><td>' + feature.properties.UtlPoleID +
-        '</td></tr>' + '<tr><td> Street Name </td><td>' + feature.properties.StreetName +
-        '</td></tr>' + '<tr><td> X </td><td>' + feature.properties.POINT_X +
-        '</td></tr>' + '<tr><td> Y </td><td>' + feature.properties.POINT_Y +
-        '</td></tr>' + '<tr><td> Installation Date </td><td>' + feature.properties.SurvDate + '</td></tr>';
-    layer.bindPopup(popupContent)
-},
+    onEachFeature: function(feature, layer) {
+        var popupContent = '<h5 class = "text-primary">Streetlight Information</h5>' +
+            '<div class="container"><table class="table table-striped">' +
+            '</td></tr>' + '<tr><td> RTE ID </td><td>' + feature.properties.RTEID +
+            '</td></tr>' + '<tr><td> Fixture Type </td><td>' + feature.properties.LumType +
+            '</td></tr>' + '<tr><td> Smart Node ID </td><td>' + feature.properties.UtlPoleID +
+            '</td></tr>' + '<tr><td> Street Name </td><td>' + feature.properties.StreetName +
+            '</td></tr>' + '<tr><td> X </td><td>' + feature.properties.POINT_X +
+            '</td></tr>' + '<tr><td> Y </td><td>' + feature.properties.POINT_Y +
+            '</td></tr>' + '<tr><td> Installation Date </td><td>' + feature.properties.SurvDate + '</td></tr>';
+        layer.bindPopup(popupContent)
+    },
 
-pointToLayer: function(feature, latlng) {
-    return L.circleMarker(latlng, s_light_style);
+    pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, s_light_style);
 
-}
+    }
 
 }).addTo(map);
 
 
-// map.on("click", function(e) {
-//     var mp = new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-//     alert(mp.getLatLng());
-});
+// // map.on("click", function(e) {
+// //     var mp = new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+// //     alert(mp.getLatLng());
+// });
