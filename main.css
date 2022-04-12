@@ -1,113 +1,50 @@
-var map = L.map('map').setView([
-    41.32825854568116, -74.18845805591613
-], 17);
-var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 17,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+html,
+body {
+    margin: 0px;
+    padding: 0%;
+}
 
-// to get the height of the window
-var height = $(window).height();
-console.log(`the height of the pc is: ` + height);
+#map {
+    width: 100%;
+    height: 100%;
+}
 
-var streetlights = {
-    "type": "FeatureCollection",
-    "features": [
-        { "type": "Feature", "properties": { "RTEID": 84, "LumType": "Cobrahead", "UtlPoleID": "54017/48375", "StreetName": "Mack Place", "SurvDate": "2022-02-16", "latlng": "-74.18666559,41.327850079" }, "geometry": { "type": "Point", "coordinates": [-74.186665589999961, 41.327850079000029] } },
-        { "type": "Feature", "properties": { "RTEID": 85, "LumType": "Cobrahead", "UtlPoleID": "54017/48375", "StreetName": "Mack Place", "SurvDate": "2022-02-16", "latlng": "-74.186606194,41.327887595" }, "geometry": { "type": "Point", "coordinates": [-74.186606193999978, 41.32788759500005] } },
-        { "type": "Feature", "properties": { "RTEID": 254, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Main Street", "SurvDate": "2022-02-16", "latlng": "-74.187225997,41.329631944" }, "geometry": { "type": "Point", "coordinates": [-74.187225996999985, 41.329631944000027] } },
-        { "type": "Feature", "properties": { "RTEID": 255, "LumType": "Cobrahead", "UtlPoleID": "53998/48434", "StreetName": "Main Street", "SurvDate": "2022-02-16", "latlng": "-74.187231265,41.3294428360001" }, "geometry": { "type": "Point", "coordinates": [-74.18723126499998, 41.329442836000055] } },
-        { "type": "Feature", "properties": { "RTEID": 256, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Main Street", "SurvDate": "2022-02-16", "latlng": "-74.187216639,41.329229447" }, "geometry": { "type": "Point", "coordinates": [-74.187216638999985, 41.329229447000046] } },
-        { "type": "Feature", "properties": { "RTEID": 257, "LumType": "Cobrahead", "UtlPoleID": "Xxxxx/48411", "StreetName": "Main Street", "SurvDate": "2022-02-14", "latlng": "-74.18722144,41.328841303" }, "geometry": { "type": "Point", "coordinates": [-74.187221439999973, 41.328841303000047] } },
-        { "type": "Feature", "properties": { "RTEID": 258, "LumType": "Cobrahead", "UtlPoleID": "54011/XXXXX", "StreetName": "Spring Street", "SurvDate": "2022-02-16", "latlng": "-74.1868555569999,41.3285860890001" }, "geometry": { "type": "Point", "coordinates": [-74.186855556999944, 41.328586089000055] } },
-        { "type": "Feature", "properties": { "RTEID": 259, "LumType": "Cobrahead", "UtlPoleID": "54024/48396", "StreetName": "Spring Street", "SurvDate": "2022-02-16", "latlng": "-74.186415317,41.3284607580001" }, "geometry": { "type": "Point", "coordinates": [-74.186415316999955, 41.328460758000062] } },
-        { "type": "Feature", "properties": { "RTEID": 305, "LumType": "Cobrahead", "UtlPoleID": "54005/48329", "StreetName": "Stage Rd", "SurvDate": "2022-02-15", "latlng": "-74.1870882599999,41.3266899760001" }, "geometry": { "type": "Point", "coordinates": [-74.187088259999939, 41.326689976000068] } },
-        { "type": "Feature", "properties": { "RTEID": 306, "LumType": "Cobrahead", "UtlPoleID": "53987/48390", "StreetName": "City Hall", "SurvDate": "2022-02-16", "latlng": "-74.1876288719999,41.328243942" }, "geometry": { "type": "Point", "coordinates": [-74.187628871999948, 41.328243942000029] } },
-        { "type": "Feature", "properties": { "RTEID": 307, "LumType": "Cobrahead", "UtlPoleID": "53989/Xxxxx", "StreetName": "City Hall", "SurvDate": "2022-02-16", "latlng": "-74.1876326939999,41.328083636" }, "geometry": { "type": "Point", "coordinates": [-74.187632693999944, 41.328083636000031] } },
-        { "type": "Feature", "properties": { "RTEID": 308, "LumType": "Cobrahead", "UtlPoleID": "Xxxxx/48382", "StreetName": "City Hall", "SurvDate": "2022-02-16", "latlng": "-74.187986887,41.3280229800001" }, "geometry": { "type": "Point", "coordinates": [-74.187986886999965, 41.328022980000071] } },
-        { "type": "Feature", "properties": { "RTEID": 309, "LumType": "Cobrahead", "UtlPoleID": "53965/48381", "StreetName": "City Hall", "SurvDate": "2022-02-16", "latlng": "-74.188500501,41.328006235" }, "geometry": { "type": "Point", "coordinates": [-74.188500500999965, 41.328006235000032] } },
-        { "type": "Feature", "properties": { "RTEID": 310, "LumType": "Cobrahead", "UtlPoleID": "53961/48393", "StreetName": "City Hall", "SurvDate": "2022-02-16", "latlng": "-74.188532156,41.3282772630001" }, "geometry": { "type": "Point", "coordinates": [-74.188532155999951, 41.328277263000075] } },
-        { "type": "Feature", "properties": { "RTEID": 311, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.1877536069999,41.328637642" }, "geometry": { "type": "Point", "coordinates": [-74.187753606999934, 41.328637642000047] } },
-        { "type": "Feature", "properties": { "RTEID": 315, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.189197932,41.3287071890001" }, "geometry": { "type": "Point", "coordinates": [-74.189197931999956, 41.328707189000056] } },
-        { "type": "Feature", "properties": { "RTEID": 316, "LumType": "Cobrahead", "UtlPoleID": "53942/48432", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.1893859099999,41.3293426550001" }, "geometry": { "type": "Point", "coordinates": [-74.189385909999942, 41.329342655000062] } },
-        { "type": "Feature", "properties": { "RTEID": 317, "LumType": "Cobrahead", "UtlPoleID": "53942/48432", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.1893898989999,41.329374767" }, "geometry": { "type": "Point", "coordinates": [-74.189389898999934, 41.329374767000047] } },
-        { "type": "Feature", "properties": { "RTEID": 318, "LumType": "Cobrahead", "UtlPoleID": "53944/48420", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.1893747189999,41.3290398410001" }, "geometry": { "type": "Point", "coordinates": [-74.189374718999943, 41.329039841000053] } },
-        { "type": "Feature", "properties": { "RTEID": 319, "LumType": "Cobrahead", "UtlPoleID": "53952/48418", "StreetName": "Commuter Parking Lot", "SurvDate": "2022-02-16", "latlng": "-74.188980876,41.3290894510001" }, "geometry": { "type": "Point", "coordinates": [-74.18898087599996, 41.329089451000073] } },
-        { "type": "Feature", "properties": { "RTEID": 325, "LumType": "Cobrahead", "UtlPoleID": "53949", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.189094145,41.3293598000001" }, "geometry": { "type": "Point", "coordinates": [-74.189094144999956, 41.329359800000077] } },
-        { "type": "Feature", "properties": { "RTEID": 326, "LumType": "Cobrahead", "UtlPoleID": "53964/48434", "StreetName": "Commuter Parking Lot", "SurvDate": "2022-02-16", "latlng": "-74.188591096,41.3294883990001" }, "geometry": { "type": "Point", "coordinates": [-74.188591095999982, 41.32948839900007] } },
-        { "type": "Feature", "properties": { "RTEID": 327, "LumType": "Cobrahead", "UtlPoleID": "53930/48394", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.189874856,41.3283002250001" }, "geometry": { "type": "Point", "coordinates": [-74.18987485599996, 41.328300225000078] } },
-        { "type": "Feature", "properties": { "RTEID": 352, "LumType": "Cobrahead", "UtlPoleID": "53883/48425", "StreetName": "State Route 17M", "SurvDate": "2022-02-16", "latlng": "-74.191525417,41.3292982" }, "geometry": { "type": "Point", "coordinates": [-74.19152541699998, 41.329298200000039] } },
-        { "type": "Feature", "properties": { "RTEID": 437, "LumType": "Cobrahead", "UtlPoleID": "53971/48414", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.188279401,41.3289427870001" }, "geometry": { "type": "Point", "coordinates": [-74.188279400999988, 41.328942787000074] } },
-        { "type": "Feature", "properties": { "RTEID": 438, "LumType": "Cobrahead", "UtlPoleID": "53971/48414", "StreetName": "Commuter Parking Lot", "SurvDate": "2022-02-16", "latlng": "-74.1882668069999,41.3289607400001" }, "geometry": { "type": "Point", "coordinates": [-74.188266806999934, 41.32896074000007] } },
-        { "type": "Feature", "properties": { "RTEID": 456, "LumType": "Cobrahead", "UtlPoleID": "53884/XXXXX", "StreetName": "Lakes Rd", "SurvDate": "2022-02-16", "latlng": "-74.1914650909999,41.327719416" }, "geometry": { "type": "Point", "coordinates": [-74.191465090999941, 41.327719416000036] } },
-        { "type": "Feature", "properties": { "RTEID": 457, "LumType": "Cobrahead", "UtlPoleID": "53900/48380", "StreetName": "Lakes Rd", "SurvDate": "2022-02-16", "latlng": "-74.1908027009999,41.32793916" }, "geometry": { "type": "Point", "coordinates": [-74.190802700999939, 41.327939160000028] } },
-        { "type": "Feature", "properties": { "RTEID": 458, "LumType": "Cobrahead", "UtlPoleID": "53909/48384", "StreetName": "Lake St", "SurvDate": "2022-02-15", "latlng": "-74.190572435,41.32805697" }, "geometry": { "type": "Point", "coordinates": [-74.190572434999979, 41.328056970000034] } },
-        { "type": "Feature", "properties": { "RTEID": 459, "LumType": "Cobrahead", "UtlPoleID": "53909/48384", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.190563302,41.32805855" }, "geometry": { "type": "Point", "coordinates": [-74.190563301999987, 41.328058550000037] } },
-        { "type": "Feature", "properties": { "RTEID": 460, "LumType": "Cobrahead", "UtlPoleID": "53920/48389", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.190237532,41.32816258" }, "geometry": { "type": "Point", "coordinates": [-74.190237531999969, 41.328162580000026] } },
-        { "type": "Feature", "properties": { "RTEID": 461, "LumType": "Cobrahead", "UtlPoleID": "53938/48398", "StreetName": "Lake St", "SurvDate": "2022-02-15", "latlng": "-74.1894716899999,41.3284201220001" }, "geometry": { "type": "Point", "coordinates": [-74.189471689999948, 41.328420122000068] } },
-        { "type": "Feature", "properties": { "RTEID": 462, "LumType": "Cobrahead", "UtlPoleID": "53930/48394", "StreetName": "Lake St", "SurvDate": "2022-02-15", "latlng": "-74.189886856,41.328318219" }, "geometry": { "type": "Point", "coordinates": [-74.189886855999987, 41.328318219000039] } },
-        { "type": "Feature", "properties": { "RTEID": 463, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.1891269989999,41.3285622490001" }, "geometry": { "type": "Point", "coordinates": [-74.189126998999939, 41.328562249000072] } },
-        { "type": "Feature", "properties": { "RTEID": 464, "LumType": "Cobrahead", "UtlPoleID": "53944/48420", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-15", "latlng": "-74.18938874,41.329031043" }, "geometry": { "type": "Point", "coordinates": [-74.18938873999997, 41.329031043000043] } },
-        { "type": "Feature", "properties": { "RTEID": 465, "LumType": "Cobrahead", "UtlPoleID": "53942/48432", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-15", "latlng": "-74.189420392,41.329360159" }, "geometry": { "type": "Point", "coordinates": [-74.189420391999988, 41.329360159000032] } },
-        { "type": "Feature", "properties": { "RTEID": 485, "LumType": "Cobrahead", "UtlPoleID": "53883/48425", "StreetName": "State Route 17M", "SurvDate": "2022-02-16", "latlng": "-74.191500019,41.329311439" }, "geometry": { "type": "Point", "coordinates": [-74.191500018999989, 41.329311439000037] } },
-        { "type": "Feature", "properties": { "RTEID": 486, "LumType": "Cobrahead", "UtlPoleID": "53896/48404", "StreetName": "State Route 17M", "SurvDate": "2022-02-16", "latlng": "-74.1910762539999,41.328593605" }, "geometry": { "type": "Point", "coordinates": [-74.191076253999938, 41.328593605000037] } },
-        { "type": "Feature", "properties": { "RTEID": 545, "LumType": "Cobrahead", "UtlPoleID": "53909/48384", "StreetName": "Lake St", "SurvDate": "2022-02-15", "latlng": "-74.1905699439999,41.328063656" }, "geometry": { "type": "Point", "coordinates": [-74.190569943999947, 41.32806365600004] } },
-        { "type": "Feature", "properties": { "RTEID": 546, "LumType": "Cobrahead", "UtlPoleID": "53915/48371", "StreetName": "State Route 17M", "SurvDate": "2022-02-16", "latlng": "-74.190393735,41.3277277380001" }, "geometry": { "type": "Point", "coordinates": [-74.190393734999986, 41.327727738000078] } },
-        { "type": "Feature", "properties": { "RTEID": 547, "LumType": "Cobrahead", "UtlPoleID": "53908/48367", "StreetName": "State Route 17M", "SurvDate": "2022-02-16", "latlng": "-74.190558403,41.3275867770001" }, "geometry": { "type": "Point", "coordinates": [-74.190558402999955, 41.327586777000079] } },
-        { "type": "Feature", "properties": { "RTEID": 550, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.189020167,41.328333957" }, "geometry": { "type": "Point", "coordinates": [-74.189020166999967, 41.328333957000041] } },
-        { "type": "Feature", "properties": { "RTEID": 551, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-15", "latlng": "-74.188948309,41.328193653" }, "geometry": { "type": "Point", "coordinates": [-74.188948308999954, 41.328193653000028] } },
-        { "type": "Feature", "properties": { "RTEID": 552, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.1888773869999,41.327995931" }, "geometry": { "type": "Point", "coordinates": [-74.188877386999934, 41.327995931000032] } },
-        { "type": "Feature", "properties": { "RTEID": 553, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.1887387949999,41.3277156190001" }, "geometry": { "type": "Point", "coordinates": [-74.188738794999949, 41.32771561900006] } },
-        { "type": "Feature", "properties": { "RTEID": 554, "LumType": "Cobrahead", "UtlPoleID": "53959/48375", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.188780315,41.327855807" }, "geometry": { "type": "Point", "coordinates": [-74.188780314999974, 41.327855807000049] } },
-        { "type": "Feature", "properties": { "RTEID": 555, "LumType": "Cobrahead", "UtlPoleID": "53959/48375", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.18875322,41.327864833" }, "geometry": { "type": "Point", "coordinates": [-74.188753219999967, 41.327864833000035] } },
-        { "type": "Feature", "properties": { "RTEID": 556, "LumType": "Cobrahead", "UtlPoleID": "53964/48362", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.188616242,41.3274939660001" }, "geometry": { "type": "Point", "coordinates": [-74.188616241999966, 41.327493966000077] } },
-        { "type": "Feature", "properties": { "RTEID": 557, "LumType": "Cobrahead", "UtlPoleID": "53967/48354", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-15", "latlng": "-74.188511762,41.3273282230001" }, "geometry": { "type": "Point", "coordinates": [-74.188511761999962, 41.327328223000052] } },
-        { "type": "Feature", "properties": { "RTEID": 558, "LumType": "Cobrahead", "UtlPoleID": "53969/48347", "StreetName": "Millpond Parkway", "SurvDate": "2022-02-16", "latlng": "-74.188397579,41.3270983240001" }, "geometry": { "type": "Point", "coordinates": [-74.188397578999968, 41.327098324000076] } },
-        { "type": "Feature", "properties": { "RTEID": 570, "LumType": "Cobrahead", "UtlPoleID": "54002/48350", "StreetName": "Smithfield Ct", "SurvDate": "2022-02-16", "latlng": "-74.1871170909999,41.327173782" }, "geometry": { "type": "Point", "coordinates": [-74.187117090999948, 41.327173782000045] } },
-        { "type": "Feature", "properties": { "RTEID": 571, "LumType": "Cobrahead", "UtlPoleID": "54001/48362", "StreetName": "Stage Rd", "SurvDate": "2022-02-15", "latlng": "-74.1871646,41.3275059090001" }, "geometry": { "type": "Point", "coordinates": [-74.18716459999996, 41.327505909000081] } },
-        { "type": "Feature", "properties": { "RTEID": 572, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Stage Rd", "SurvDate": "2022-02-16", "latlng": "-74.1871346039999,41.3277093240001" }, "geometry": { "type": "Point", "coordinates": [-74.187134603999937, 41.327709324000068] } },
-        { "type": "Feature", "properties": { "RTEID": 573, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Stage Rd", "SurvDate": "2022-02-16", "latlng": "-74.1870846639999,41.32792894" }, "geometry": { "type": "Point", "coordinates": [-74.18708466399994, 41.327928940000049] } },
-        { "type": "Feature", "properties": { "RTEID": 574, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Stage Rd", "SurvDate": "2022-02-15", "latlng": "-74.187142228,41.328025268" }, "geometry": { "type": "Point", "coordinates": [-74.187142227999971, 41.328025268000033] } },
-        { "type": "Feature", "properties": { "RTEID": 575, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Stage Rd", "SurvDate": "2022-02-15", "latlng": "-74.187096891,41.328099926" }, "geometry": { "type": "Point", "coordinates": [-74.187096890999953, 41.32809992600005] } },
-        { "type": "Feature", "properties": { "RTEID": 576, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Stage Rd", "SurvDate": "2022-02-15", "latlng": "-74.187158252,41.3282725290001" }, "geometry": { "type": "Point", "coordinates": [-74.187158251999961, 41.32827252900006] } },
-        { "type": "Feature", "properties": { "RTEID": 592, "LumType": "Cobrahead", "UtlPoleID": "No tag", "StreetName": "Lake St", "SurvDate": "2022-02-15", "latlng": "-74.187360826,41.328528197" }, "geometry": { "type": "Point", "coordinates": [-74.187360825999974, 41.328528197000026] } },
-        { "type": "Feature", "properties": { "RTEID": 593, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.188053053,41.328625867" }, "geometry": { "type": "Point", "coordinates": [-74.188053052999976, 41.328625867000028] } },
-        { "type": "Feature", "properties": { "RTEID": 594, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.1878706809999,41.3285785150001" }, "geometry": { "type": "Point", "coordinates": [-74.187870680999936, 41.328578515000061] } },
-        { "type": "Feature", "properties": { "RTEID": 595, "LumType": "Cobrahead", "UtlPoleID": "No tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.1875470649999,41.3286367900001" }, "geometry": { "type": "Point", "coordinates": [-74.187547064999933, 41.328636790000076] } },
-        { "type": "Feature", "properties": { "RTEID": 596, "LumType": "Cobrahead", "UtlPoleID": "No tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.1873932629999,41.3286937060001" }, "geometry": { "type": "Point", "coordinates": [-74.187393262999933, 41.328693706000081] } },
-        { "type": "Feature", "properties": { "RTEID": 597, "LumType": "Cobrahead", "UtlPoleID": "No tag", "StreetName": "Main Street", "SurvDate": "2022-02-16", "latlng": "-74.187228385,41.3288782670001" }, "geometry": { "type": "Point", "coordinates": [-74.187228384999969, 41.32887826700005] } },
-        { "type": "Feature", "properties": { "RTEID": 598, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.1876097959999,41.328571389" }, "geometry": { "type": "Point", "coordinates": [-74.187609795999947, 41.328571389000047] } },
-        { "type": "Feature", "properties": { "RTEID": 599, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.188218391,41.3285728540001" }, "geometry": { "type": "Point", "coordinates": [-74.188218390999964, 41.328572854000072] } },
-        { "type": "Feature", "properties": { "RTEID": 600, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.188607296,41.328528664" }, "geometry": { "type": "Point", "coordinates": [-74.188607295999986, 41.328528664000032] } },
-        { "type": "Feature", "properties": { "RTEID": 601, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.1889243539999,41.328485717" }, "geometry": { "type": "Point", "coordinates": [-74.188924353999937, 41.328485717000035] } },
-        { "type": "Feature", "properties": { "RTEID": 602, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.188825282,41.3285582390001" }, "geometry": { "type": "Point", "coordinates": [-74.188825281999982, 41.328558239000074] } },
-        { "type": "Feature", "properties": { "RTEID": 603, "LumType": "Cobrahead", "UtlPoleID": "No Tag", "StreetName": "Lake St", "SurvDate": "2022-02-16", "latlng": "-74.188392563,41.328600313" }, "geometry": { "type": "Point", "coordinates": [-74.188392562999979, 41.328600313000038] } },
-        { "type": "Feature", "properties": { "RTEID": 624, "LumType": "Cobrahead", "UtlPoleID": "53921/48349", "StreetName": "State Route 17M", "SurvDate": "2022-02-16", "latlng": "-74.190168418,41.3270912520001" }, "geometry": { "type": "Point", "coordinates": [-74.190168417999985, 41.327091252000059] } }
-    ]
-};
+.split {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
 
-var s_light_style = {
-    radius: 7,
-    fillColor: "#008cff",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 1
-};
+.left {
+    left: 0;
+    /* background-color: red; */
+    width: 65%;
+    /* zoom: 0.5; */
+}
 
-L.geoJSON(streetlights, {
-    onEachFeature: function(feature, layer) {
-        var popupContent = '<h5 class = "text-primary">Streetlight Information</h5>' +
-            '<div class="container"><table class="table table-striped">' +
-            // '<thead><tr><th>Properties</th><th>Light Information</th></tr></thead>' +
-            '</td></tr>' + '<tr><td> RTE ID </td><td>' + feature.properties.RTEID +
-            '</td></tr>' + '<tr><td> Pole ID </td><td>' + feature.properties.UtlPoleID +
-            '</td></tr>' + '<tr><td> Light Type </td><td>' + feature.properties.LumType +
-            '</td></tr>' + '<tr><td> Street Name </td><td>' + feature.properties.StreetName +
-            '</td></tr>' + '<tr><td> Installation Date </td><td>' + feature.properties.SurvDate + '</td></tr>';
-        layer.bindPopup(popupContent)
-    },
-    pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, s_light_style);
-    }
-}).addTo(map);
+.right {
+    right: 0;
+    /* background-color: blue; */
+    width: 35%;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 0%;
+}
+
+.leaflet-popup-close-button {
+    color: red;
+    margin: 3%;
+    position: relative;
+}
